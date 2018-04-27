@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Responsive Parallax Text on top of Image</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+</head>
+<body>
+  <section class="funLoveDim">
+    <div class="map">
+      <img src="old_acad_ground_floor.png">
+    </div>
+    <div class="point-1" style="display:none">
+      <div class="circle">
+      </div>
+    </div>
+    <div class="point-2" style="display:none">
+      <div class="circle">
+      </div>
+    </div>
+    <div class="point-3" style="display:none">
+      <div class="circle">
+      </div>
+    </div>
+    <div class="point-4" style="display:none">
+      <div class="circle">
+      </div>
+      <!-- <img src="area.png" > -->
+    </div>
+    <div class="point-5" style="display:none">
+      <div class="circle">
+      </div>
+    </div>
+    <div class="point-6" style="display:none">
+      <div class="circle">
+      </div>
+    </div>
+    <div class="point-7">
+      <button id="hide">Hide</button>
+      <button id="show">Show</button>
+    </div>
+    <!-- </div> -->
+  </section>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+$(function () {
+  var socket = io();
+  // $('form').submit(function(){
+  //   socket.emit('chat message', $('#m').val());
+  //   $('#m').val('');
+  //   return false;
+  // });
+  socket.on('chat message', function(msg){
+    // $('#messages').append($('<li>').text(msg));
+    console.log("added "+msg);
+    console.log(typeof msg);
+    msg = Number(msg);
+    console.log(msg);
+    console.log(typeof msg);
+    change_loc(msg,6);
+  });
+});
+var access_points = 6;
+function change_loc(bssid, access_points)
+{
+  for(var i=1;i<=access_points;i++)
+  {
+    if(i==bssid)
+    {
+      $(".point-"+i).show();
+    }
+    else {
+      $(".point-"+i).hide();
+    }
+  }
+};
+$(document).ready(function(){
+  $("#hide").click(function(){
+    //     $(".point-1").hide();
+    change_loc(1,6);
+  });
+  $("#show").click(function(){
+    //     $(".point-1").show();
+    change_loc(2,6);
+  });
+});
+</script>
+</html>
