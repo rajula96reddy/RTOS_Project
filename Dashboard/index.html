@@ -24,11 +24,11 @@
       <div class="circle">
       </div>
     </div>
-    <div class="point-4" style="display:none">
+    <!-- <div class="point-4" style="display:none">
       <div class="circle">
-      </div>
+      </div> -->
       <!-- <img src="area.png" > -->
-    </div>
+    <!-- </div>
     <div class="point-5" style="display:none">
       <div class="circle">
       </div>
@@ -40,7 +40,7 @@
     <div class="point-7">
       <button id="hide">Hide</button>
       <button id="show">Show</button>
-    </div>
+    </div> -->
     <!-- </div> -->
   </section>
 </body>
@@ -57,16 +57,28 @@ $(function () {
   socket.on('chat message', function(msg){
     // $('#messages').append($('<li>').text(msg));
     console.log("added "+msg);
-    console.log(typeof msg);
-    msg = Number(msg);
-    console.log(msg);
-    console.log(typeof msg);
+    // console.log(typeof msg);
+    // msg = Number(msg);
+    // console.log(msg);
+    // console.log(typeof msg);
     change_loc(msg,6);
   });
 });
 var access_points = 6;
 function change_loc(bssid, access_points)
 {
+  console.log(bssid);
+  if(bssid == "a0:d3:c1:b4:8e:a3" || bssid == "a0:d3:c1:b4:8e:a2" )
+  {
+    bssid = 1;
+  }
+  else if (bssid == "a0:d3:c1:b4:8e:93" || bssid == "a0:d3:c1:b4:8e:92") {
+    bssid = 2;
+  }
+  else if (bssid == "a0:d3:c1:b4:1c:f3" || bssid == "a0:d3:c1:b4:1c:f2") {
+    bssid = 3;
+  }
+  console.log(bssid);
   for(var i=1;i<=access_points;i++)
   {
     if(i==bssid)
