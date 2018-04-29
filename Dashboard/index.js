@@ -34,7 +34,7 @@ io.on('connection', function(socket){
         console.log("added");
         console.log(newRow);
         console.log(newRow.fields.uid);
-        io.emit('chat message', newRow.fields.bssid);
+        io.volatile.emit('chat message', newRow.fields.bssid);
       }
 
       //row deleted
